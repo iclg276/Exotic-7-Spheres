@@ -40,9 +40,11 @@ body {
     border-radius: 12px;
 }
 
-/* YouTube link: lower right, thumbnail preview */
+/* YouTube link with thumbnail preview */
 .yt-link {
     position: fixed;
+    top: auto;
+    left: auto;
     bottom: 20px;
     right: 20px;
     z-index: 10;
