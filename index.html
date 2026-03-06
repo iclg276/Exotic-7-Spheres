@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Exotic Seven Spheres</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Exotic Seven Spheres — Hopf Fibration</title>
+    <meta name="description" content="Interactive visualization of Milnor's exotic 7-spheres: Hopf fibration and trivial bundle (Three.js)">
 </head>
-<body>
+<body class="project-frame">
+    <header class="project-header">
+        <h1 class="project-header__title">Exotic Seven Spheres</h1>
+    </header>
+
+    <div id="app-canvas"></div>
     <div id="subtitle" class="subtitle"></div>
     <div id="inset-container" class="inset-container"></div>
 
@@ -15,13 +20,6 @@
         <span class="yt-link-play">▶</span>
     </a>
 
-    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r100/build/three.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r100/examples/js/controls/OrbitControls.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19" defer></script>
-    <script src="app-state.js" defer></script>
-    <script src="math-helpers.js" defer></script>
-    <script src="build-geometry.js" defer></script>
-    <script src="inset-view.js" defer></script>
-    <script src="main.js" defer></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

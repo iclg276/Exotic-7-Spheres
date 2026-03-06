@@ -1,6 +1,10 @@
-(function attachBuilders(global) {
-    const App = global.App || (global.App = {});
-    const { params, u_base, helpers } = App;
+import * as THREE from 'three';
+
+/**
+ * Geometry builders: base space sphere, V fibers, U fiber.
+ * Dispose helpers for cleaning GPU resources.
+ */
+export function createBuilders(params, u_base, helpers) {
     const {
         currentTheta,
         currentU,
@@ -74,8 +78,8 @@
         }
 
         const vGeom = new THREE.BufferGeometry();
-        vGeom.addAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-        vGeom.addAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+        vGeom.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+        vGeom.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
 
         const vPts = new THREE.Points(
             vGeom,
@@ -131,7 +135,6 @@
         scene.add(nextFiberGroup);
 
         const twoPi = 2 * Math.PI;
-        const tauOffset = params.theta * Math.PI / 180;  // theta = fiber phase in radians
 
         const fiberMat = new THREE.MeshPhongMaterial({ color: 0x0000ff, shininess: 80 }); // blue
         //const axis = { x: 0, y: 0, z: 1 }; // j-axis for u
@@ -153,8 +156,8 @@
 
             //const u = U(params.theta + f/2, m); // THE CORE OF THIS PROJECT // no longer
             //const u = u_on_fiber(u_base, params.theta + f);
-            // const u = u_on_fiber(u_base, tauOffset + f / 2); // fiber-phase-shifted quaternion
-            const u = currentU(tauOffset, f);
+            // const u = u_on_fiber(u_base, (params.theta * Math.PI / 180) + f / 2); // fiber-phase-shifted quaternion
+            const u = currentU(0, f); // no longer use tauOffset, because I can make the U fiber rotation angle independent of the base point.
             const alpha = Math.sqrt((1 + c) / 2);
             const beta = Math.sqrt((1 - c) / 2);
 
@@ -256,11 +259,11 @@
         fiberGroup.add(new THREE.Mesh(redGeom, redMat));
     }
 
-    App.builders = {
+    return {
         disposeGroup,
         disposeBaseSpace,
         buildBaseSpace,
         buildVFibers,
         buildUFiber,
     };
-})(window);
+}

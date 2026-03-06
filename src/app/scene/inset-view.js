@@ -1,8 +1,10 @@
-(function attachInsetView(global) {
-    const App = global.App || (global.App = {});
+import * as THREE from 'three';
 
-    // Inset view uses its own renderer + canvas so it can be higher-DPI
-    // without making the main scene more expensive (no scissor/viewport hacks).
+/**
+ * Inset view uses its own renderer + canvas so it can be higher-DPI
+ * without making the main scene more expensive (no scissor/viewport hacks).
+ */
+export function createInsetView() {
     function init(opts = {}) {
         const size = opts.size ?? 200;
         // Cap DPR to avoid huge GPU cost on very high-density displays.
@@ -39,7 +41,7 @@
 
         // Pointer handling: rotate the inset group on drag.
         // We attach listeners to this canvas (not the main one) so OrbitControls
-        // for the main view doesn’t steal the gesture.
+        // for the main view doesn't steal the gesture.
         const canvas = insetRenderer.domElement;
         let dragging = false;
         let prevClientX = 0;
@@ -90,5 +92,5 @@
         };
     }
 
-    App.insetView = { init };
-})(window);
+    return { init };
+}

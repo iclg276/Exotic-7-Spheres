@@ -1,1 +1,3 @@
 use-github-account.js
+node_modules/
+dist/

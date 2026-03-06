@@ -1,0 +1,18 @@
+{
+  "name": "exotic-seven-spheres",
+  "version": "1.0.0",
+  "description": "Interactive visualization of Milnor's exotic 7-spheres and trivial  7-sphere-bundles",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lil-gui": "^0.19.2",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

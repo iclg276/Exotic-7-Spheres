@@ -1,7 +1,10 @@
-(function attachMathHelpers(global) {
-    const App = global.App || (global.App = {});
-    const { params, u_base } = App;
+import * as THREE from 'three';
 
+/**
+ * Quaternion helpers, stereographic projection, and fiber helpers.
+ * Depends on params and u_base (injected when creating helpers).
+ */
+export function createMathHelpers(params, u_base) {
     // --- Quaternion helpers ---
     function quatMul(a, b) {
         return {
@@ -66,8 +69,10 @@
             : Math.atan2(b, -a) - t;
     }
 
-    //U fiber action on each V fiber at specific degree f  
+    //U fiber action on each V fiber at specific degree f
     // tauOffset is the offset of the U fiber from the base point
+    // I no longer use tauOffset, because I can make the U fiber rotation angle independent of the base point.
+
     // f is the degree of the base point on S^2 on equator
     function currentU(tauOffset, f) {
         return params.stackView
@@ -82,7 +87,7 @@
         return new THREE.Vector3((q.x / denom) * R, (q.y / denom) * R, (q.z / denom) * R);
     }
 
-    App.helpers = {
+    return {
         quatMul,
         quatConj,
         powQuat,
@@ -95,4 +100,4 @@
         currentU,
         stereographic,
     };
-})(window);
+}
