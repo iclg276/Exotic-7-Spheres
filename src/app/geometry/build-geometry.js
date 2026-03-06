@@ -157,7 +157,8 @@ export function createBuilders(params, u_base, helpers) {
             //const u = U(params.theta + f/2, m); // THE CORE OF THIS PROJECT // no longer
             //const u = u_on_fiber(u_base, params.theta + f);
             // const u = u_on_fiber(u_base, (params.theta * Math.PI / 180) + f / 2); // fiber-phase-shifted quaternion
-            const u = currentU(0, f); // no longer use tauOffset, because I can make the U fiber rotation angle independent of the base point.
+            // const u = currentU(0, f); // no longer use tauOffset, because I can make the U fiber rotation angle independent of the base point.
+            const u = currentU((params.theta * Math.PI / 180) , f); // I was wrong, you can really tell the differnece on trivial bundles
             const alpha = Math.sqrt((1 + c) / 2);
             const beta = Math.sqrt((1 - c) / 2);
 

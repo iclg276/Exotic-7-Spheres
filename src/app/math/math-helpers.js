@@ -72,7 +72,7 @@ export function createMathHelpers(params, u_base) {
     //U fiber action on each V fiber at specific degree f
     // tauOffset is the offset of the U fiber from the base point
     // I no longer use tauOffset, because I can make the U fiber rotation angle independent of the base point.
-
+    // I was wrong, you can really tell the differnece on trivial bundles
     // f is the degree of the base point on S^2 on equator
     function currentU(tauOffset, f) {
         return params.stackView
